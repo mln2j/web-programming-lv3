@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const tbody = document.querySelector('.vrijeme-info table tbody');
+            const noDataMessage = document.querySelector('#no-data-message'); // ID za element koji prikazuje poruku o nedostatku podataka
+            const tableWrapper = document.querySelector('.table-wrapper'); // ID za wrapper tablice
             tbody.innerHTML = '';
+            noDataMessage.style.display = 'none'; // Sakrij poruku na početku
+            tableWrapper.style.display = 'block'; // Osiguraj da je tablica prikazana pri učitavanju
 
             console.log(rezultat.data); // Provjerite podatke
 
@@ -44,31 +48,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Prikazivanje filtriranih podataka u tablici
                 tbody.innerHTML = ''; // Očisti tablicu prije dodavanja novih podataka
 
-                filteredData.forEach(red => {
-                    const tr = document.createElement('tr');
+                if (filteredData.length === 0) {
+                    noDataMessage.style.display = 'block'; // Prikazivanje poruke o nedostatku podataka
+                    tableWrapper.style.display = 'none'; // Sakrij tablicu
+                } else {
+                    noDataMessage.style.display = 'none'; // Sakrij poruku ako podaci postoje
+                    tableWrapper.style.display = 'block'; // Prikazivanje tablice ako podaci postoje
+                    filteredData.forEach(red => {
+                        const tr = document.createElement('tr');
 
-                    const vrijednosti = [
-                        red["Temp"],
-                        red["Humidity"],
-                        red["Wind"],
-                        red["Precipitation"],
-                        red["Clouds"],
-                        red["Pressure"],
-                        red["UV"],
-                        red["Season"],
-                        red["Visibility"],
-                        red["Location"],
-                        red["Weather"]
-                    ];
+                        const vrijednosti = [
+                            red["Temp"],
+                            red["Humidity"],
+                            red["Wind"],
+                            red["Precipitation"],
+                            red["Clouds"],
+                            red["Pressure"],
+                            red["UV"],
+                            red["Season"],
+                            red["Visibility"],
+                            red["Location"],
+                            red["Weather"]
+                        ];
 
-                    vrijednosti.forEach(vrijednost => {
-                        const td = document.createElement('td');
-                        td.textContent = vrijednost;
-                        tr.appendChild(td);
+                        vrijednosti.forEach(vrijednost => {
+                            const td = document.createElement('td');
+                            td.textContent = vrijednost;
+                            tr.appendChild(td);
+                        });
+
+                        tbody.appendChild(tr);
                     });
-
-                    tbody.appendChild(tr);
-                });
+                }
             };
 
             // Dodaj event listener za filtriranje kada se klikne na "Filtriraj"
