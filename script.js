@@ -27,6 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 tempValue.textContent = `${filterTempRange.value}°C`;
             });
 
+            // Funkcija za pohranu podataka u localStorage
+            const dodajUPlaner = (podatak) => {
+                // Provjeriti postoji li već planer u localStorage
+                let planer = JSON.parse(localStorage.getItem('planer')) || [];
+
+                // Provjera da li je podatak već u planer
+                const postojiUPlaneru = planer.some(item => item.Location === podatak.Location && item.Temp === podatak.Temp);
+
+                if (!postojiUPlaneru) {
+                    // Dodaj podatak u planer
+                    planer.push(podatak);
+                    // Spremi ažurirani planer u localStorage
+                    localStorage.setItem('planer', JSON.stringify(planer));
+                    alert("Izlet je dodan u planer!");
+                } else {
+                    alert("Ovaj izlet je već u planeru!");
+                }
+            };
+
             // Filtriranje i prikazivanje podataka
             const applyFilters = () => {
                 const seasonValue = filterSeason.value;
@@ -76,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             td.textContent = vrijednost;
                             tr.appendChild(td);
                         });
+
+                        const button = document.createElement('button');
+                        button.textContent = "Dodaj u planer";
+                        button.classList.add('dodaj-u-planer');
+                        button.addEventListener('click', () => dodajUPlaner(red)); // Dodaj event listener za pohranu podataka
+                        tr.appendChild(button);
 
                         tbody.appendChild(tr);
                     });

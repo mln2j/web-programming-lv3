@@ -209,6 +209,10 @@ section, article {
 .vrijeme-info > .table-wrapper > table > thead > tr > th {
   width: fit-content;
 }
+.vrijeme-info > .table-wrapper > table > tbody > tr {
+  position: relative;
+  overflow: hidden;
+}
 .vrijeme-info > .table-wrapper > table > tbody > tr:nth-child(even) {
   background-color: rgba(32, 139, 225, 0.2);
 }
