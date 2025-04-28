@@ -1,0 +1,34 @@
+Temperature,Humidity,WindSpeed,Precipitation,SkyCondition,Pressure,UVIndex,Season,Visibility,Location,WeatherType
+23,69,9.5,10,clear,1012.91,9,Spring,8.5,inland,Sunny
+29,82,18,78,overcast,991.54,3,Spring,4,inland,Rainy
+36,48,3.5,11,partly cloudy,1024.92,10,Autumn,5.5,mountain,Sunny
+32,35,5.5,9,partly cloudy,1010.24,6,Summer,9,coastal,Sunny
+23,23,3.5,8,clear,1027.69,5,Spring,6.5,mountain,Sunny
+30,57,12.5,33,overcast,1002.2,1,Autumn,7,inland,Cloudy
+28,65,1.5,20,partly cloudy,1007,4,Spring,8.5,mountain,Cloudy
+29,96,11.5,79,partly cloudy,1013.23,0,Spring,1,inland,Rainy
+35,63,8,3,clear,1029.83,10,Spring,5,mountain,Sunny
+18,82,8.5,83,overcast,999.13,0,Summer,2.5,coastal,Rainy
+8,90,1.5,70,partly cloudy,1011.19,10,Spring,7.5,mountain,Cloudy
+19,65,2.5,20,partly cloudy,1016.81,1,Spring,8,inland,Cloudy
+28,72,14,73,partly cloudy,1005.12,1,Summer,1,coastal,Rainy
+40,94,15,97,clear,1021.59,3,Autumn,4.5,coastal,Sunny
+15,61,11,63,overcast,1006.12,3,Spring,4.5,mountain,Rainy
+26,90,26,88,partly cloudy,998.97,4,Summer,2.5,coastal,Rainy
+26,67,11,74,overcast,993.37,1,Spring,1.5,inland,Rainy
+5,21,14.5,17,cloudy,886.6,13,Autumn,0.5,coastal,Cloudy
+41,50,8.5,6,partly cloudy,1017.27,9,Spring,6,inland,Sunny
+40,62,6,12,clear,1022.43,10,Winter,7,inland,Sunny
+20,22,4.5,18,partly cloudy,1014.29,10,Summer,8.5,inland,Sunny
+33,63,15.5,94,overcast,1012.72,2,Autumn,4,inland,Rainy
+32,66,12.5,41,partly cloudy,1006.41,4,Autumn,8,coastal,Cloudy
+24,77,13.5,89,partly cloudy,1019.08,2,Summer,4,inland,Rainy
+11,82,13,68,overcast,998.55,1,Summer,1.5,inland,Rainy
+43,41,1,0,partly cloudy,1029.63,6,Spring,8,mountain,Sunny
+16,65,12.5,27,cloudy,1146.34,8,Winter,15,inland,Rainy
+17,63,4.5,44,partly cloudy,1008.97,3,Spring,6.5,coastal,Cloudy
+-8,73,7,87,overcast,992.94,1,Winter,2.5,mountain,Snowy
+27,60,8,92,overcast,991.3,2,Autumn,2,coastal,Rainy
+28,45,7.5,1,clear,1019.2,9,Spring,5,inland,Sunny
+28,57,5,21,partly cloudy,1009.21,3,Spring,8.5,inland,Cloudy
+30,29,0.5,13,partly cloudy,1013.89,6,Winter,7,coastal,Sunny

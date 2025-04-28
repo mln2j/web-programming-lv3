@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap')
+
+$base-font-size: 18
+
+$sm: 576px
+$md: 768px
+$lg: 992px
+$xl: 1200px
+$xxl: 1400px
+
+$lv1-body-bg: #f7f7f7
+$lv1-primary: #208be1
+$lv1-secondary: #6f9d81
+$lv1-body: #070707
+$lv1-footer-bg: #5e9e7e
+$lv1-gray: #e4e4e4
+
+@function px2rem($px)
+  @return #{floor($px/$base-font-size*1e7)/1e7}rem
+
+:focus
+  outline: none
+
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+*
+  -moz-osx-font-smoothing: grayscale
+  text-shadow: none
+
+html
+  scroll-behavior: smooth
+  letter-spacing: 0
+  font-family: "Lato", sans-serif
+  font-style: normal
+  font-weight: 400
+  font-size: #{$base-font-size}px
+  line-height: px2rem(24)
+  margin-top: 0 !important
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+  -ms-touch-action: manipulation
+  touch-action: manipulation
+  -webkit-tap-highlight-color: transparent
+  @media (min-width: 2048px)
+    font-size: 1vw
+
+button, input, optgroup, select, textarea
+  font-family: inherit
+
+.container
+  width: 91.33%
+  margin-left: auto
+  margin-right: auto
+  @media (screen and min-width: $lg)
+    width: 86.33%
+  & > .row
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    @media (screen and min-width: $lg)
+      gap: px2rem(20)
+    & > .col-lg-9, & > .col-lg-3
+      width: 100%
+    //noinspection ALL
+    @media (screen and min-width: $lg)
+      & > .col-lg-9
+        order: 1
+        width: calc(75% - px2rem(10))
+      & > .col-lg-3
+        order: 2
+        width: calc(25% - px2rem(10))
+
+body
+  position: relative
+  z-index: 1
+  color: $lv1-body
+  background-color: $lv1-body-bg
+  min-height: 100vh
+  margin: 0
+  @media (orientation: landscape) and (max-width: 992px)
+    min-height: 100vw
+
+header
+  background-color: rgba($lv1-primary, 0.85)
+  & > .container
+    & > h1
+      margin: 0
+      padding: 0
+      text-align: center
+      color: $lv1-body-bg
+      font-size: px2rem(36)
+      line-height: px2rem(42)
+      @media (screen and min-width: $lg)
+        font-size: px2rem(48)
+        line-height: px2rem(70)
+
+nav
+  background-color: $lv1-primary
+  & > .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-top: px2rem(18)
+    padding-bottom: px2rem(20)
+    & > .brand
+      width: fit-content
+      & > a
+        font-size: px2rem(24)
+        font-weight: 900
+        color: $lv1-body-bg
+        text-decoration: none
+    & > .links
+      width: fit-content
+      display: inline-flex
+      gap: px2rem(10)
+      @media (screen and min-width: $lg)
+        gap: px2rem(20)
+      & > a
+        text-transform: uppercase
+        color: $lv1-body-bg
+        text-decoration: none
+        position: relative
+        padding-top: px2rem(5)
+        padding-bottom: px2rem(6)
+        overflow: hidden
+        &:after
+          content: ""
+          position: absolute
+          left: 0
+          bottom: 0
+          width: 100%
+          height: px2rem(4)
+          background-color: $lv1-body-bg
+          transition: 350ms
+          transform: translateY(100%)
+        &:hover:after
+          transform: translateY(0)
+
+footer
+  background-color: rgba($lv1-primary, 0.85)
+  position: relative
+  bottom: 0
+  width: 100%
+  & > .container
+    padding-top: px2rem(100)
+    display: flex
+    align-items: flex-end
+    justify-content: flex-end
+    & > p
+      color: $lv1-body-bg
+
+main
+  padding-top: px2rem(40)
+  padding-bottom: px2rem(50)
+  min-height: 70vh
+
+section, article
+  margin-top: px2rem(40)
+  margin-bottom: px2rem(40)
+
+.vrijeme-info
+  & > .table-wrapper
+    overflow-x: auto
+    & > table
+      font-size: px2rem(16)
+      @media (screen and min-width: $lg)
+        font-size: px2rem(18)
+      & > thead
+        & > tr
+          color: $lv1-body-bg
+          background-color: rgba($lv1-primary, 0.8)
+          & > th
+            width: fit-content
+      & > tbody
+        & > tr
+          &:nth-child(even)
+            background-color: rgba($lv1-primary, 0.2)
+          &:nth-child(odd)
+            background-color: rgba($lv1-primary, 0.05)
+
+.weather-card
+  width: 100%
+  border-radius: px2rem(8)
+  margin-bottom: px2rem(15)
+  padding: px2rem(10) px2rem(10) px2rem(12)
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  color: $lv1-body-bg
+  & > .temp-info
+    & > p
+      padding: 0
+      margin: 0
+      &.location-name
+        font-size: px2rem(24)
+        line-height: px2rem(36)
+      &.location-temperature
+        font-size: px2rem(54)
+        line-height: px2rem(64)
+        font-weight: 700
+  & > .weather-info
+    & > img
+      width: px2rem(80)
+    & > p.location-weather-type
+      margin: 0
+      text-align: right
+      padding: px2rem(10) px2rem(10) 0 0
+  &.sunny
+    background-color: #31749c
+    transition: background-color 350ms
+    &:hover, &:focus
+      background-color: #3B91C3
+  &.rainy
+    background-color: #7491A3
+    transition: background-color 350ms
+    &:hover, &:focus
+      background-color: #455761
+
+.pie-chart-wrapper
+  --sunny-color: #ffd41e
+  --rainy-color: #7491A3
+  --cloudy-color: #9e9ea3
+  @media (screen and min-width: $lg)
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: px2rem(50)
+
+  & > .chart
+    position: relative
+    margin-left: auto
+    margin-right: auto
+    @media (screen and min-width: $lg)
+      margin-left: 0
+      margin-right: 0
+    background: conic-gradient(var(--sunny-color) 35%, var(--rainy-color) 0 41%, var(--cloudy-color) 0)
+    border-radius: 50%
+    width: 75%
+    max-width: px2rem(500)
+    aspect-ratio: 1/1
+    transition: background 0.3s ease
+    &:after
+      content: ""
+      position: absolute
+      top: 50%
+      left: 50%
+      width: 0
+      height: 0
+      border-radius: 50%
+      background-color: $lv1-body-bg
+      transition: 0.3s
+      transform: translate(-50%, -50%)
+      @media (screen and min-width: $lg)
+        height: 85%
+        width: 85%
+    &:hover:after
+      width: 85%
+      height: 85%
+      @media (screen and min-width: $lg)
+        height: 0
+        width: 0
+
+  & >.chart-info
+    & > .key
+      list-style: none
+      margin: 0
+      padding: px2rem(40) 0 0
+      display: flex
+      justify-content: center
+      gap: px2rem(30)
+      @media (screen and min-width: $lg)
+        flex-direction: column
+        gap: px2rem(10)
+      & > li
+        display: flex
+        flex-direction: column
+        gap: px2rem(5)
+        @media (screen and min-width: $lg)
+          flex-direction: row
+          gap: px2rem(10)
+        align-items: center
+        &.sunny
+          & > .percent
+            background: var(--sunny-color)
+        &.rainy
+          & > .percent
+            background: var(--rainy-color)
+        &.cloudy
+          & > .percent
+            background: var(--cloudy-color)
+        & > .percent
+          border-radius: px2rem(8)
+          color: white
+          padding: px2rem(8) px2rem(4)
+          text-align: center
+        & > .choice
+          padding: 0
+
+
+
+.galerija
+  display: flex
+  flex-wrap: wrap
+  gap: px2rem(10)
+  @media (screen and min-width: $md)
+    gap: px2rem(20)
+  @media (screen and min-width: $xl)
+    gap: px2rem(25)
+
+  //noinspection ALL
+  & > .galerija_slika
+    position: relative
+    width: calc(50% - px2rem(5))
+    @media (screen and min-width: $md)
+      width: calc(33.33% - px2rem(13.33))
+    @media (screen and min-width: $xl)
+      width: calc(25% - px2rem(18.85))
+    display: inline-block
+    margin: 0
+    padding: 0
+    text-align: center
+    & img
+      display: block
+      width: 100%
+      height: auto
+      object-fit: cover
+      transition: transform 0.3s, box-shadow 0.3s
+      border-radius: px2rem(8)
+      aspect-ratio: 5/4
+      box-shadow: 0 px2rem(2) px2rem(4) rgba(0, 0, 0, 0.2)
+      @media (screen and min-width: $lg)
+        &:hover
+          transform: scale(1.05)
+          box-shadow: 0 px2rem(2) px2rem(4) rgba(0, 0, 0, 0.5)
+  & > .img-toggle
+    display: none
+    &:checked + .galerija_slika
+      img
+        position: fixed
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%) scale(1.5)
+        z-index: 1000
+        max-width: 60%
+        max-height: 60vh
+
+    &:checked + .galerija_slika::before
+      content: ""
+      position: fixed
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: rgba(19, 19, 19, 0.6)
+      z-index: 999
