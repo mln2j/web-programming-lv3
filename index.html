@@ -59,32 +59,34 @@
                 <div class="vrijeme-filter">
                     <h2>Filtriranje podataka</h2>
                     <div id="filteri">
-                        <label for="filter-season">Sezona:</label>
-                        <select id="filter-season">
-                            <option value="" disabled selected>-- Odaberi sezonu --</option>
-                            <option value="Spring">Spring</option>
-                            <option value="Summer">Summer</option>
-                            <option value="Autumn">Autumn</option>
-                            <option value="Winter">Winter</option>
-                        </select>
+                        <div class="season-filter">
+                            <label for="filter-season">Sezona:</label>
+                            <select id="filter-season">
+                                <option value="" disabled selected>-- Odaberi sezonu --</option>
+                                <option value="Spring">Spring</option>
+                                <option value="Summer">Summer</option>
+                                <option value="Autumn">Autumn</option>
+                                <option value="Winter">Winter</option>
+                            </select>
+                        </div>
+                        <div class="location-filter">
+                            <label for="filter-location">Lokacija:</label>
+                            <input type="text" id="filter-location" placeholder="Unesite lokaciju">
+                        </div>
 
-                        <label for="filter-location">Lokacija:</label>
-                        <input type="text" id="filter-location" placeholder="Unesite lokaciju">
+                        <div class="temp-filter">
+                            <label for="filter-temp-range">Raspon temperatura:</label>
+                            <input type="range" id="filter-temp-range" min="-20" max="40" step="1" value="20">
+                            <span id="temp-value">20°C</span>
+                        </div>
 
-                        <label for="filter-temp-range">Raspon temperatura:</label>
-                        <input type="range" id="filter-temp-range" min="-20" max="40" step="1" value="20">
-                        <span id="temp-value">20°C</span>
 
                         <button id="primijeni-filtere">Filtriraj</button>
                     </div>
                 </div>
 
-
-
-
                 <div class="vrijeme-info">
                     <h2>Vremenski Podaci</h2>
-
                     <div id="no-data-message" style="display:none;">
                         <p>Nema podataka koji zadovoljavaju odabrane filtre.</p>
                     </div>

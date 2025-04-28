@@ -185,6 +185,12 @@ section, article {
   margin-bottom: 2.2222222rem;
 }
 
+.vrijeme-filter > #filteri {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .vrijeme-info > .table-wrapper {
   overflow-x: auto;
 }
