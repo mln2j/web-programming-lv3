@@ -220,6 +220,35 @@ section, article {
   background-color: rgba(32, 139, 225, 0.05);
 }
 
+.vrijeme-info > .table-wrapper {
+  overflow-x: auto;
+}
+.vrijeme-info > .table-wrapper > table {
+  font-size: 0.8888888rem;
+}
+@media (min-width: 992px) {
+  .vrijeme-info > .table-wrapper > table {
+    font-size: 1rem;
+  }
+}
+.vrijeme-info > .table-wrapper > table > thead > tr {
+  color: #f7f7f7;
+  background-color: rgba(32, 139, 225, 0.8);
+}
+.vrijeme-info > .table-wrapper > table > thead > tr > th {
+  width: fit-content;
+}
+.vrijeme-info > .table-wrapper > table > tbody > tr {
+  position: relative;
+  overflow: hidden;
+}
+.vrijeme-info > .table-wrapper > table > tbody > tr:nth-child(even) {
+  background-color: rgba(32, 139, 225, 0.2);
+}
+.vrijeme-info > .table-wrapper > table > tbody > tr:nth-child(odd) {
+  background-color: rgba(32, 139, 225, 0.05);
+}
+
 .weather-card {
   width: 100%;
   border-radius: 0.4444444rem;

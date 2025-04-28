@@ -8,13 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const tbody = document.querySelector('.vrijeme-info table tbody');
-            const noDataMessage = document.querySelector('#no-data-message'); // ID za element koji prikazuje poruku o nedostatku podataka
-            const tableWrapper = document.querySelector('.table-wrapper'); // ID za wrapper tablice
+            const noDataMessage = document.querySelector('#no-data-message');
+            const tableWrapper = document.querySelector('.table-wrapper');
             tbody.innerHTML = '';
-            noDataMessage.style.display = 'none'; // Sakrij poruku na početku
-            tableWrapper.style.display = 'block'; // Osiguraj da je tablica prikazana pri učitavanju
-
-            console.log(rezultat.data); // Provjerite podatke
+            noDataMessage.style.display = 'none';
+            tableWrapper.style.display = 'block';
 
             const filterSeason = document.getElementById('filter-season');
             const filterLocation = document.getElementById('filter-location');
@@ -29,21 +27,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Funkcija za pohranu podataka u localStorage
             const dodajUPlaner = (podatak) => {
-                // Provjeriti postoji li već planer u localStorage
                 let planer = JSON.parse(localStorage.getItem('planer')) || [];
 
                 // Provjera da li je podatak već u planer
                 const postojiUPlaneru = planer.some(item => item.Location === podatak.Location && item.Temp === podatak.Temp);
 
                 if (!postojiUPlaneru) {
-                    // Dodaj podatak u planer
                     planer.push(podatak);
-                    // Spremi ažurirani planer u localStorage
                     localStorage.setItem('planer', JSON.stringify(planer));
                     alert("Izlet je dodan u planer!");
+                    prikaziPlaner(); // Ažuriraj planer nakon dodavanja
                 } else {
                     alert("Ovaj izlet je već u planeru!");
                 }
+            };
+
+            // Funkcija za prikaz podataka u planeru
+            const prikaziPlaner = () => {
+                const planerTbody = document.getElementById('planer-tbody');
+                planerTbody.innerHTML = ''; // Očisti planer prije prikaza
+
+                const planer = JSON.parse(localStorage.getItem('planer')) || [];
+                if (planer.length === 0) {
+                    alert("Planer je prazan.");
+                }
+
+                planer.forEach(item => {
+                    const tr = document.createElement('tr');
+                    const tdLocation = document.createElement('td');
+                    tdLocation.textContent = item.Location;
+                    tr.appendChild(tdLocation);
+
+                    const tdTemp = document.createElement('td');
+                    tdTemp.textContent = item.Temp;
+                    tr.appendChild(tdTemp);
+
+                    const tdSeason = document.createElement('td');
+                    tdSeason.textContent = item.Season;
+                    tr.appendChild(tdSeason);
+
+                    const tdWeather = document.createElement('td');
+                    tdWeather.textContent = item.Weather;
+                    tr.appendChild(tdWeather);
+
+                    // Dodavanje gumba za uklanjanje iz planera
+                    const tdButton = document.createElement('td');
+                    const button = document.createElement('button');
+                    button.textContent = "Ukloni iz planera";
+                    button.classList.add('dodaj-u-planer');
+                    button.addEventListener('click', () => ukloniIzPlanera(item)); // Event listener za uklanjanje
+                    tdButton.appendChild(button);
+                    tr.appendChild(tdButton);
+
+                    planerTbody.appendChild(tr);
+                });
+            };
+
+            // Funkcija za uklanjanje podataka iz planera
+            const ukloniIzPlanera = (item) => {
+                let planer = JSON.parse(localStorage.getItem('planer')) || [];
+                planer = planer.filter(p => p.Location !== item.Location || p.Temp !== item.Temp); // Filtriraj iz planera
+                localStorage.setItem('planer', JSON.stringify(planer)); // Spremi ažurirani planer
+                prikaziPlaner(); // Ažuriraj planer
             };
 
             // Filtriranje i prikazivanje podataka
@@ -54,11 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Filtriraj podatke prema kriterijima
                 const filteredData = rezultat.data.filter(row => {
-                    // Filter po sezoni
                     const seasonMatch = seasonValue ? row["Season"] === seasonValue : true;
-                    // Filter po lokaciji
                     const locationMatch = locationValue ? row["Location"].toLowerCase().includes(locationValue) : true;
-                    // Filter po temperaturi
                     const tempMatch = row["Temp"] && parseInt(row["Temp"]) <= tempValueSlider;
 
                     return seasonMatch && locationMatch && tempMatch;
@@ -68,11 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 tbody.innerHTML = ''; // Očisti tablicu prije dodavanja novih podataka
 
                 if (filteredData.length === 0) {
-                    noDataMessage.style.display = 'block'; // Prikazivanje poruke o nedostatku podataka
-                    tableWrapper.style.display = 'none'; // Sakrij tablicu
+                    noDataMessage.style.display = 'block';
+                    tableWrapper.style.display = 'none';
                 } else {
-                    noDataMessage.style.display = 'none'; // Sakrij poruku ako podaci postoje
-                    tableWrapper.style.display = 'block'; // Prikazivanje tablice ako podaci postoje
+                    noDataMessage.style.display = 'none';
+                    tableWrapper.style.display = 'block';
                     filteredData.forEach(red => {
                         const tr = document.createElement('tr');
 
@@ -112,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Početno filtriranje (ako je potrebno)
             applyFilters();
+
+            // Početno učitavanje podataka u planer prilikom učitavanja stranice
+            prikaziPlaner();
         })
         .catch(err => console.error("Greška prilikom dohvaćanja CSV-a:", err));
 });

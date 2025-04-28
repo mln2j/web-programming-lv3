@@ -190,6 +190,28 @@ section, article
           &:nth-child(odd)
             background-color: rgba($lv1-primary, 0.05)
 
+.vrijeme-info
+  & > .table-wrapper
+    overflow-x: auto
+    & > table
+      font-size: px2rem(16)
+      @media (screen and min-width: $lg)
+        font-size: px2rem(18)
+      & > thead
+        & > tr
+          color: $lv1-body-bg
+          background-color: rgba($lv1-primary, 0.8)
+          & > th
+            width: fit-content
+      & > tbody
+        & > tr
+          position: relative
+          overflow: hidden
+          &:nth-child(even)
+            background-color: rgba($lv1-primary, 0.2)
+          &:nth-child(odd)
+            background-color: rgba($lv1-primary, 0.05)
+
 .weather-card
   width: 100%
   border-radius: px2rem(8)
